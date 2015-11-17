@@ -1,0 +1,146 @@
+.container {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    padding: 20px;
+    -webkit-box-shadow: 0 2px 2px 1px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 2px 1px rgba(0,0,0,0.2);
+}
+
+.insuranceLead{
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 2;
+}
+.display-flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.flex-3 {
+    flex: 3;
+}
+
+.flex-4 {
+    flex: 4;
+}
+
+.flex-5 {
+    flex: 5;
+}
+
+.flex-6 {
+    flex: 6;
+}
+
+[class*="flex-"] {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+[class*="flex-"]:first-child {
+    padding-left: 0;
+}
+
+[class*="flex-"]:nth-last-child(2) {
+    padding-right: 0;
+}
+
+.passengerNumber{
+    width:50px;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.text-after{
+    margin-bottom:0px
+}
+
+.no-padding .col-sm-1,.no-padding .col-sm-2,.no-padding .col-sm-3{
+    padding:0px;
+    padding-right:5px;
+}
+
+.dob{
+    background-color: #d0e9c6;
+}
+
+
+/* when showing the picture */
+.ng-hide-remove      { animation:0.5s fadeIn ease;}
+
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -ms-animation: spin .7s infinite linear;
+    -webkit-animation: spinw .7s infinite linear;
+    -moz-animation: spinm .7s infinite linear;
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+@-webkit-keyframes spinw {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@-moz-keyframes spinm {
+    from { -moz-transform: rotate(0deg);}
+    to { -moz-transform: rotate(360deg);}
+}
+
+.extras span{
+    margin-right:10px;
+    display:inline-block;
+}
+
+.summary .form-group label{
+    padding-top:0px;
+}
+
+.main-form {
+    position:absolute;
+    right:0;
+    top:0;
+    background:white;
+    width:500px;
+    z-index:100;
+    padding:20px;
+    border-left:2px solid black;
+    min-height:100%;
+}
+.control-group {
+    margin-bottom:20px;
+}
+.error-messages.ng-active {
+    background:maroon;
+    color:white;
+    padding:5px;
+    border-radius:5px;
+    margin-top:15px;
+    position:relative;
+}
+.error-messages.ng-active:after {
+    position:absolute;
+    top:-10px;
+    content:"";
+    left:20px;
+    border-style:solid;
+    border-color:transparent transparent maroon;
+    border-width:5px;
+}
+
+.bullet {
+    list-style: url('/graphics/backgrounds2/bullet.gif');
+    margin: 0 0 0 20px;
+}

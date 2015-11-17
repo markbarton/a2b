@@ -1,0 +1,24 @@
+<div class="panel panel-default displayInfo" ng-controller="queryDisplayController as vm" ng-show="vm.results">
+    <div class="panel-body panel-display">
+        <div class="row">
+            <div class="col-sm-12">
+                <h4> <span class="glyphicon glyphicon-question-sign"></span> Query</h4>
+
+                <table class="display-query">
+                    <tr><td class="display-label">Journey Type</td><td>{{vm.formattedData.SectorTypeDisplay}}</td></tr>
+                    <tr><td class="display-label">Date / Time</td><td>{{vm.formattedData.ArrDate}} {{vm.formattedData.ArrTime}} (Arrival)</td></tr>
+                    <tr ng-show="vm.formattedData.SectorTypeDisplay=='Return'"><td class="display-label">Date / Time</td><td>{{vm.formattedData.RetDate}} {{vm.formattedData.RetTime}} (Return)</td></tr>
+                    <tr><td class="display-label">Pickup</td><td><span ng-bind-html="vm.formattedData.DepLocation.autoTitle|unsafe"></span></td></tr>
+                    <tr><td class="display-label">Drop off</td><td><span ng-bind-html="vm.formattedData.RetLocation.autoTitle|unsafe"></span></td></tr>
+                    <tr><td class="display-label">Adults</td><td>{{vm.formattedData.Adults}}</td></tr>
+                    <tr><td class="display-label">Children</td><td>{{vm.formattedData.Children}}</td></tr>
+                    <tr><td class="display-label">Infants</td><td>{{vm.formattedData.Infants}}</td></tr>
+                </table>
+
+            </div>
+            <div class="col-sm-6">
+
+            </div>
+        </div>
+    </div>
+</div>

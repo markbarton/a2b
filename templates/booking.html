@@ -1,0 +1,105 @@
+<div class="panel panel-default">
+
+    <div class="panel-body">
+
+        <form novalidate class="form-horizontal" name="vm.bookingForm" ng-controller="bookingController as vm">
+            <div class="form-group text-after ">
+                <label class="col-sm-3 control-label">Booking Reference</label>
+
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" ng-model="vm.quote.bookingNumber" name="BookingNumber"
+                           required
+                           placeholder="Booking Number">
+                </div>
+                <div class="col-sm-1">
+                    <button class="pull-left btn btn-primary" ng-click="vm.getBooking()">
+                        <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"
+                              ng-show="vm.booking_loading"></span>
+                        Get Booking
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="row" ng-show="vm.bookingError">
+                <div class="col-sm-offset-3 col-sm-6">
+                    <div class="alert alert-danger">
+                        {{vm.bookingError}}
+                    </div>
+
+                </div>
+            </div>
+
+            <!--  <div ng-show="vm.bookingInfo" class="row">
+
+                  <div class="col-sm-3 control-label"><strong>Booking</strong></div>
+                  <div class="col-sm-6">
+                      <div style="border:3px dashed silver;border-radius: 5px;background-color: #fcfcfc" class="row">
+                          <div class="col-sm-6">
+                              <strong>{{vm.bookingInfo.bookno}}</strong><br/>
+                              <strong>{{vm.bookingInfo.lead_title}} {{vm.bookingInfo.lead_firstname}}
+                                  {{vm.bookingInfo.lead_surname}}</strong><br/>
+                              <strong>{{vm.bookingInfo.telephone}}</strong><br/>
+                              <strong>{{vm.bookingInfo.email}}</strong>
+                          </div>
+                          <div class="col-sm-6">
+                              <strong>{{vm.bookingInfo.address1}}</strong><br/>
+                              <strong>{{vm.bookingInfo.address2}}</strong><br/>
+                              <strong>{{vm.bookingInfo.address3}}</strong><br/>
+                              <strong>{{vm.bookingInfo.postcode}}</strong><br/>
+                          </div>
+                      </div>
+                  </div>
+              </div>-->
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Departure</th>
+                            <th>Pickup</th>
+                            <th>Drop Off</th>
+                            <th>Cost</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tr ng-repeat="booking in vm.currentBookings" ng-class="{'highlight':booking._id==vm.selectedBooking}">
+                            <td><span class="label"
+                                      ng-class="{'label-success':booking.status=='Confirmed','label-default':booking.status=='reserved'}">{{booking.status | titlecase}}</span>
+                            </td>
+                            <td>{{booking.arrDate}} {{booking.arrTime}}</td>
+                            <td><span ng-bind-html="booking.depLocation.autoTitle|unsafe"></span></td>
+                            <td><span ng-bind-html="booking.retLocation.autoTitle|unsafe"></span></td>
+                            <td>{{booking.reserve[0].HolidayValue[0]}}</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <button ng-show="booking.status==='reserved'" class="btn btn-xs btn-success"
+                                            ng-click="vm.completeBooking(booking)">Book
+                                    </button>
+                                    <button ng-show="booking.status==='booked'" class="btn btn-xs btn-warning">Cancel
+                                    </button>
+                                    <button class="btn btn-xs btn-information" ng-click="vm.displayInfo(booking)">Info
+                                    </button>
+                                    <button class="btn btn-xs btn-danger" ng-click="vm.displayInfo(booking)">Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+            <div ng-show="vm.bookingInfo" class="row">
+                <div class="col-sm-6 col-sm-offset-3" style="padding-top:10px;text-align: center">
+                    <button class="btn btn-primary" ng-click="vm.newQuery()">New Transfer Query</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="panel panel-default" ng-controller="resultController as vm" ng-show="vm.results">
+
+    <div class="panel-body">
+
+        <div ng-repeat="result in vm.results" class="row rowPadding" ng-class="{'car-selected':result.selected}">
+
+            <div class="col-sm-4">
+                <img ng-src="{{result.carimage}}"/>
+            </div>
+            <div class="col-sm-5">
+                <h4 ng-bind="result.car"></h4>
+                <h5>{{result.departure}} - {{result.destination}}</h5>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <strong>{{result.passengers}}</strong><br/>
+                        Passengers
+                    </div>
+                    <div class="col-sm-6">
+                        <strong>{{result.bags}} x Suitcase</strong><br/>
+                        per person
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <strong>{{result.journeyTime}}</strong><br/>
+                        Transfer time
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <h3>£{{result.price}}</h3>
+                <button class="btn btn-default" ng-click="vm.reserve(result)">Reserve</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>

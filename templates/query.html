@@ -1,0 +1,165 @@
+<div class="panel panel-default" ng-controller="queryController as vm" ng-show="vm.bookingInfo">
+
+    <div class="panel-body">
+        <form novalidate class="form-horizontal" name="vm.quoteForm" >
+
+            <div class="form-group text-after ">
+                <label class="col-sm-3 control-label">Journey Type</label>
+
+                <div class="col-sm-4">
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios1" value="oneway"
+                                   ng-model="vm.quote.SectorType" checked>
+                            One Way
+                        </label>
+                        <label>
+                            <input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="vm.quote.SectorType"
+                                   value="return">
+                            Return
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group text-after ">
+                <label class="col-sm-3 control-label">Departure Date</label>
+
+                <div class="col-sm-3">
+                    <wj-input-date value="vm.quote.DepDate"
+                                   format="MMM dd, yyyy"></wj-input-date>
+
+
+                </div>
+                <label class="col-sm-3 control-label">Departure Time</label>
+
+                <div class="col-sm-3">
+                    <wj-input-time
+                            value="vm.quote.DepTime"
+                            format="HH:mm"
+                            step="5"
+                            >
+                    </wj-input-time>
+
+                </div>
+
+            </div>
+
+            <div class="form-group text-after " ng-hide="vm.quote.SectorType=='oneway'">
+                <label class="col-sm-3 control-label">Return Date</label>
+
+                <div class="col-sm-3">
+                    <wj-input-date value="vm.quote.RetDate"
+                                   format="MMM dd, yyyy"></wj-input-date>
+
+
+                </div>
+                <label class="col-sm-3 control-label">Return Time</label>
+
+                <div class="col-sm-3">
+                    <wj-input-time
+                            value="vm.quote.RetTime"
+                            format="HH:mm"
+                            step="5"
+                            >
+                    </wj-input-time>
+
+                </div>
+
+            </div>
+            <div class="form-group text-after ">
+                <label class="col-sm-3 control-label">Pickup Point</label>
+
+                <div class="col-sm-9">
+
+                    <wj-auto-complete
+                            class="autoComplete"
+                            ng-model="vm.quote.DepLocation"
+                            items-source-function="vm.getLocationInformation"
+                            display-member-path="autoTitle"
+                            css-match="'match'"
+                            >
+                    </wj-auto-complete>
+                </div>
+
+            </div>
+
+            <div class="form-group text-after ">
+                <label class="col-sm-3 control-label">Dropoff Point</label>
+
+                <div class="col-sm-9">
+
+                    <wj-auto-complete
+                            class="autoComplete"
+                            ng-model="vm.quote.RetLocation"
+                            items-source-function="vm.getLocationInformation"
+                            display-member-path="autoTitle"
+                            css-match="'match'"
+                            >
+                    </wj-auto-complete>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Adults</label>
+
+                <div class="col-sm-2">
+                    <select ng-model="vm.quote.Adults" id="Adults" class="form-control">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+
+                <label class="col-sm-1 control-label">Children</label>
+
+                <div class="col-sm-2">
+                    <select ng-model="vm.quote.Children" id="Children" class="form-control">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <label class="col-sm-1 control-label">Infants</label>
+
+                <div class="col-sm-2">
+                    <select ng-model="vm.quote.Infants" id="Infants" class="form-control">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-2 col-sm-offset-3">
+                    <button class="btn btn-primary" ng-click="vm.getQuote()" ng-disabled="vm.haveRetCode==false && vm.haveDepCode==false">Get Quote</button>
+                </div>
+                <div class="col-sm-6" ng-show="vm.haveRetCode==false && vm.haveDepCode==false">
+                    <div class="alert alert-warning">
+                        Either the Pickup Point or Dropoff Point needs to have a city code
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" ng-show="vm.quote.error">
+                <div class="col-sm-offset-3 col-sm-6" >
+                    <div class="alert alert-danger">
+                        {{vm.quote.error}}
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

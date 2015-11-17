@@ -1,0 +1,59 @@
+<div class="panel panel-default" ng-controller="completeController as vm" >
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="alert alert-info">
+                    <h4>Complete Booking</h4>
+                    <p>You may either complete this Booking now or hold this reservation.</p>
+                    <p><strong>Any bookings cancelled within 2 days will attract a cancellation charge.</strong></p>
+                </div>
+            </div>
+        </div>
+        <form novalidate class="form-horizontal" name="vm.completeForm" >
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Departure Information</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="DepInfo" ng-model="vm.DepInfo"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Return Information</label>
+
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="DepInfo" ng-model="vm.RetInfo"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Remarks</label>
+
+                <div class="col-sm-9">
+                    <textarea  class="form-control" name="Remark" ng-model="vm.Remark"/>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <div class="btn-group">
+                        <button class="btn btn-primary" ng-click="vm.book()">Create Booking</button>
+                        <button class="btn btn-success" ng-click="vm.sendToSuperfacts()" ng-hide="vm.completeBooking==''">Send to Superfacts</button>
+                        <button class="btn btn-default" ng-click="vm.cancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" ng-show="vm.book.error">
+                <div class="col-sm-offset-3 col-sm-6" >
+                    <div class="alert alert-danger">
+                        {{vm.book.error}}
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

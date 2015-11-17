@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<head>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
+    <script src="lib/jquery.js"></script>
+    <script src="lib/angular.js"></script>
+    <script src="lib/wijmo.min.js"></script>
+    <script src="lib/wijmo.input.min.js"></script>
+    <script src="lib/wijmo.angular.js"></script>
+    <script src="lib/lodash.js"></script>
+    <script src="lib/moment.min.js"></script>
+    <script src="lib/loading-bar.min.js"></script>
+    <script src="lib/ui-bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="css/animate.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="css/main.css">-->
+    <link rel="stylesheet" type="text/css" href="http://cdn.wijmo.com/5.20142.0/styles/wijmo.min.css">
+    <link rel="stylesheet" type="text/css" href="css/loading-bar.css">
+    <link rel="stylesheet" type="text/css" href="css/loading-bar2.css">
+    <style type='text/css'>
+
+        .container {
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            padding: 20px;
+            -webkit-box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .wj-calendar {
+            max-width: 300px;
+        }
+
+        .match {
+            background-color: yellow;
+            color: black;
+        }
+
+        .generalImage {
+            background: url(images/rt_white.png) left center no-repeat !important;
+            width: 19px !important;
+            height: 19px !important;
+            display: inline-block !important;
+            float: left !important;
+            clear: both !important;
+            margin-right: 5px !important;
+        }
+
+        .hotelImage {
+            background: url(images/ht_white.png) left center no-repeat !important;
+            width: 19px !important;
+            height: 19px !important;
+            display: inline-block !important;
+            float: left !important;
+            clear: both !important;
+            margin-right: 5px !important;
+        }
+
+        .cruiseImage {
+            background: url(images/pt_white.png) left center no-repeat !important;
+            width: 19px !important;
+            height: 19px !important;
+            display: inline-block !important;
+            float: left !important;
+            clear: both !important;
+            margin-right: 5px !important;
+        }
+        .autoComplete {
+            width: 100%;
+        }
+
+
+        .rowPadding {
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        .glyphicon-refresh-animate {
+            -animation: spin .7s infinite linear;
+            -ms-animation: spin .7s infinite linear;
+            -webkit-animation: spinw .7s infinite linear;
+            -moz-animation: spinm .7s infinite linear;
+        }
+
+        @keyframes spin {
+            from {
+                transform: scale(1) rotate(0deg);
+            }
+            to {
+                transform: scale(1) rotate(360deg);
+            }
+        }
+
+        @-webkit-keyframes spinw {
+            from {
+                -webkit-transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @-moz-keyframes spinm {
+            from {
+                -moz-transform: rotate(0deg);
+            }
+            to {
+                -moz-transform: rotate(360deg);
+            }
+        }
+
+        .displayInfo {
+            font-family: 'Source Code Pro' !important;
+        }
+
+        .display-query{
+            width:100%;
+        font-weight: bold;
+        }
+
+        .display-label{
+            width:120px;
+            font-weight: normal;
+            text-transform: uppercase;
+        }
+
+        .panel-display{
+            background-color: aliceblue;
+        }
+        .panel-display-success{
+            background-color: #d0e9c6;
+        }
+
+        .car-selected{
+            background-color: aliceblue;
+            border:3px dashed black;
+        }
+
+        .highlight{
+            background:yellow;
+        }
+    </style>
+
+</head>
+<body ng-app="a2b">
+
+<main class="container-fluid" ng-controller="accordionController">
+
+<h3><img src="images/logo.png"/> A2B Transfers</h3>
+
+    <div class="row">
+
+        <div class="col-sm-8">
+
+            <uib-accordion close-others="true">
+                <uib-accordion-group is-open="currentPanel.booking">
+                    <uib-accordion-heading>
+                        <span class="glyphicon glyphicon-user"></span> Booking Information <span
+                            class="label label-success" ng-show="bookingInfo.bookno">{{bookingInfo.bookno}}
+                {{bookingInfo.lead_title}} {{bookingInfo.lead_firstname}} {{bookingInfo.lead_surname}}</span>
+                    </uib-accordion-heading>
+                    <ng-include src="'templates/booking.html'"></ng-include>
+                </uib-accordion-group>
+
+                <uib-accordion-group heading="Query" is-open="currentPanel.query" ng-hide="currentPanel.booking">
+                    <uib-accordion-heading>
+                        <span class="glyphicon glyphicon-question-sign"></span> Transfer Query
+                    </uib-accordion-heading>
+                    <ng-include src="'templates/query.html'"></ng-include>
+                </uib-accordion-group>
+
+                <uib-accordion-group heading="Results" is-open="currentPanel.results" ng-hide="currentPanel.booking">
+                    <uib-accordion-heading>
+                        <span class="glyphicon glyphicon-ok-sign"></span> Results
+                    </uib-accordion-heading>
+                    <ng-include src="'templates/results.html'"></ng-include>
+                </uib-accordion-group>
+
+                <uib-accordion-group heading="Complete Booking" is-open="currentPanel.complete" ng-hide="currentPanel.booking">
+                    <uib-accordion-heading>
+                        <span class="glyphicon glyphicon-ok-sign"></span> Booking
+                    </uib-accordion-heading>
+                    <ng-include src="'templates/complete.html'"></ng-include>
+                </uib-accordion-group>
+
+            </uib-accordion>
+        </div>
+        <div class="col-sm-4">
+
+
+            <ng-include src="'templates/sidebar/booking-display.html'"></ng-include>
+            <ng-include src="'templates/sidebar/query-display.html'"></ng-include>
+            <ng-include src="'templates/sidebar/reserve-display.html'"></ng-include>
+            <ng-include src="'templates/sidebar/confirmed-display.html'"></ng-include>
+
+        </div>
+    </div>
+
+
+
+
+</main>
+
+
+<!--Application Dependencies-->
+<script src="lib/elasticsearch.js"></script>
+<script src="app.js"></script>
+<script src="services/mapit.js"></script>
+<script src="services/a2b.js"></script>
+<script src="services/booking.js"></script>
+<script src="controller/accordian.js"></script>
+<script src="controller/query.js"></script>
+<script src="controller/booking.js"></script>
+<script src="controller/booking-display.js"></script>
+<script src="controller/query-display.js"></script>
+<script src="controller/result.js"></script>
+<script src="controller/reserve-display.js"></script>
+<script src="controller/complete.js"></script>
+<script src="controller/complete-display.js"></script>
+<script src="config.js"></script>
+
+</body>
+</html>
